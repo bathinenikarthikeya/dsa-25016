@@ -1,0 +1,84 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+class LinkedListBinaryTree:
+    def __init__(self):
+        self.root = None
+    def insert(self, data):
+        new_node = Node(data)
+        if not self.root:
+            self.root = new_node
+            return
+
+        queue = [self.root]
+        while queue:
+            current = queue.pop(0)
+ 
+            if not current.left:
+                current.left = new_node
+                return
+            else:
+                queue.append(current.left)
+ 
+            if not current.right:
+                current.right = new_node
+                return
+            else:
+                queue.append(current.right)
+ 
+    def search(self, key):
+        if not self.root:
+            return False
+        queue = [self.root]
+        while queue:
+            current = queue.pop(0)
+            if current.data == key:
+                return True
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+        return False
+ 
+    def preorder(self, node, result=None):
+        if result is None: 
+            result = []
+        if node:
+            result.append(node.data)
+            self.preorder(node.left, result)
+            self.preorder(node.right, result)
+        return result
+ 
+    def inorder(self, node, result=None):
+        if result is None: 
+            result = []
+        if node:
+            self.inorder(node.left, result)
+            result.append(node.data)
+            self.inorder(node.right, result)
+        return result
+ 
+    def postorder(self, node, result=None):
+        if result is None: 
+            result = []
+        if node:
+            self.postorder(node.left, result)
+            self.postorder(node.right, result)
+            result.append(node.data)
+        return result
+ 
+    def level_order(self):
+        if not self.root:
+            return []
+        result = []
+        queue = [self.root]
+        while queue:
+            current = queue.pop(0)
+            result.append(current.data)
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+        return result
