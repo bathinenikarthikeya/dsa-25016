@@ -1,0 +1,61 @@
+# Queue Implementation using Array
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    # Enqueue operation
+    def enqueue(self, data):
+        self.queue.append(data)
+        print(data, "enqueued into queue.")
+
+    # Dequeue operation
+    def dequeue(self):
+        if len(self.queue) == 0:
+            print("Queue Underflow.")
+        else:
+            data = self.queue.pop(0)
+            print(data, "dequeued from queue.")
+
+    # Peek operation
+    def peek(self):
+        if len(self.queue) == 0:
+            print("Queue is empty.")
+        else:
+            print("Front element:", self.queue[0])
+
+    # Display queue
+    def display(self):
+        if len(self.queue) == 0:
+            print("Queue is empty.")
+        else:
+            print("Queue elements:")
+            for i in self.queue:
+                print(i)
+
+# Main Program
+q = Queue()
+while True:
+    print("\n======= QUEUE USING ARRAY =======")
+    print("1. Enqueue")
+    print("2. Dequeue")
+    print("3. Peek")
+    print("4. Display")
+    print("5. Exit")
+    print("==================================")
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        data = int(input("Enter data: "))
+        q.enqueue(data)
+    elif choice == 2:
+        q.dequeue()
+    elif choice == 3:
+        q.peek()
+    elif choice == 4:
+        q.display()
+    elif choice == 5:
+        print("Program terminated.")
+        break
+    else:
+        print("Invalid choice.")
